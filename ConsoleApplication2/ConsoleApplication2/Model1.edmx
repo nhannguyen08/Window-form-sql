@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OOPCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Expenditure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Birthplace" Type="nvarchar(max)" />
+          <Property Name="Living" Type="nvarchar(max)" />
+          <Property Name="Occupation" Type="nvarchar(max)" />
+          <Property Name="Father_id" Type="int" />
+          <Property Name="Mother_id" Type="int" />
+          <Property Name="Spouse_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Member__Father_i__182C9B23">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="Member1" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Father_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Member__Mother_i__1920BF5C">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="Member1" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Mother_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Member__Spouse_i__1A14E395">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="Member1" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Spouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OOPCSModelStoreContainer">
+          <EntitySet Name="Expenditure" EntityType="Self.Expenditure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Member__Father_i__182C9B23" Association="Self.FK__Member__Father_i__182C9B23">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Member1" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Member__Mother_i__1920BF5C" Association="Self.FK__Member__Mother_i__1920BF5C">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Member1" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Member__Spouse_i__1A14E395" Association="Self.FK__Member__Spouse_i__1A14E395">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Member1" EntitySet="Member" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OOPCSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Expenditure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OOPCSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Expenditures" EntityType="Self.Expenditure" />
+          <EntitySet Name="Members" EntityType="OOPCSModel.Member" />
+          <AssociationSet Name="FK__Member__Father_i__182C9B23" Association="OOPCSModel.FK__Member__Father_i__182C9B23">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Member1" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Member__Mother_i__1920BF5C" Association="OOPCSModel.FK__Member__Mother_i__1920BF5C">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Member1" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Member__Spouse_i__1A14E395" Association="OOPCSModel.FK__Member__Spouse_i__1A14E395">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Member1" EntitySet="Members" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Birthplace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Living" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Father_id" Type="Int32" />
+          <Property Name="Mother_id" Type="Int32" />
+          <Property Name="Spouse_id" Type="Int32" />
+          <NavigationProperty Name="Member1" Relationship="OOPCSModel.FK__Member__Father_i__182C9B23" FromRole="Member" ToRole="Member1" />
+          <NavigationProperty Name="Member2" Relationship="OOPCSModel.FK__Member__Father_i__182C9B23" FromRole="Member1" ToRole="Member" />
+          <NavigationProperty Name="Member11" Relationship="OOPCSModel.FK__Member__Mother_i__1920BF5C" FromRole="Member" ToRole="Member1" />
+          <NavigationProperty Name="Member3" Relationship="OOPCSModel.FK__Member__Mother_i__1920BF5C" FromRole="Member1" ToRole="Member" />
+          <NavigationProperty Name="Member12" Relationship="OOPCSModel.FK__Member__Spouse_i__1A14E395" FromRole="Member" ToRole="Member1" />
+          <NavigationProperty Name="Member4" Relationship="OOPCSModel.FK__Member__Spouse_i__1A14E395" FromRole="Member1" ToRole="Member" />
+        </EntityType>
+        <Association Name="FK__Member__Father_i__182C9B23">
+          <End Type="OOPCSModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="OOPCSModel.Member" Role="Member1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Father_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Member__Mother_i__1920BF5C">
+          <End Type="OOPCSModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="OOPCSModel.Member" Role="Member1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Mother_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Member__Spouse_i__1A14E395">
+          <End Type="OOPCSModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="OOPCSModel.Member" Role="Member1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Member1">
+              <PropertyRef Name="Spouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OOPCSModelStoreContainer" CdmEntityContainer="OOPCSEntities">
+          <EntitySetMapping Name="Expenditures">
+            <EntityTypeMapping TypeName="OOPCSModel.Expenditure">
+              <MappingFragment StoreEntitySet="Expenditure">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="OOPCSModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Spouse_id" ColumnName="Spouse_id" />
+                <ScalarProperty Name="Mother_id" ColumnName="Mother_id" />
+                <ScalarProperty Name="Father_id" ColumnName="Father_id" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Living" ColumnName="Living" />
+                <ScalarProperty Name="Birthplace" ColumnName="Birthplace" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
